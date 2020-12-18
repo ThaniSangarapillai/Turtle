@@ -1,0 +1,16 @@
+while true do
+    turtle.turnRight()
+    while turtle.detect() != true do
+        turtle.turnLeft()
+        if turtle.detect() != true then
+            break
+        end
+        turtle.dig()
+        turtle.forward()
+        turtle.turnRight()
+    end
+    
+    turtle.digDown()
+    turtle.down()
+end
+
