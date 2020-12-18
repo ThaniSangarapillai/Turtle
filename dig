@@ -1,9 +1,14 @@
 while true do
     turtle.turnRight()
-    while turtle.detect() != true do
+    while true do
+        if turtle.detect() == true then
+            turtle.dig()
+            turtle.forward()
+        end
         turtle.turnLeft()
-        if turtle.detect() != true then
-            break
+        if turtle.detect() ~= true then
+            if turtle.detect() ~= true then
+                break
         end
         turtle.dig()
         turtle.forward()
@@ -13,4 +18,3 @@ while true do
     turtle.digDown()
     turtle.down()
 end
-
