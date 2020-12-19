@@ -6,9 +6,15 @@ while true do
             turtle.forward()
         end
         turtle.turnLeft()
-        if turtle.detect() ~= true then
-            if turtle.detect() ~= true then
+        turtle.turnLeft()
+        if turtle.detect() == false then
+            turtle.turnRight()
+            turtle.back()
+            turtle.turnLeft()
+            if turtle.detect() == false then
+                turtle.turnRight()
                 break
+            end
         end
         turtle.dig()
         turtle.forward()
