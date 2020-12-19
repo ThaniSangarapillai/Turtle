@@ -99,10 +99,10 @@ for i = depth,0,-1 do
         end
         
         local oretable = {'diamond', 'coal', 'iron', 'gold', 'obsidian', 'copper', 'draconium', 'yellorite', 'silver', 'uranium', 'emerald', 'ore', 'resource'}
-        for name in oretable do
+        for index = 1,13,1 do
             for inv = 1,16,1 do
                 local data = turtle.getItemDetail(inv)
-                if not data.name:find(name) then
+                if not data.name:find(oretable[index]) then
                     turtle.select(inv)
                     turtle.drop()
                 end
