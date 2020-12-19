@@ -25,9 +25,8 @@ if x_arg < 0 then
 else
     step = -1
     turtle.turnLeft()
-    turtle.turnLeft()
 end
-
+print(x_arg)
 for i = 0,x_arg,step do
     turtle.dig()
     turtle.forward()
@@ -38,6 +37,7 @@ if step == -1 then
     turtle.turnRight()
 end
 
+print(z_arg)
 if z_arg < 0 then
     step = 1
     turtle.turnRight()
@@ -63,6 +63,7 @@ else
     step = -1
 end
 
+print(y_arg)
 for i = 0,y_arg,step do
     turtle.digDown()
     turtle.down()
