@@ -98,7 +98,7 @@ for i = depth,0,-1 do
             end
         end
         
-        local oretable = {'diamond', 'coal', 'iron', 'gold', 'obsidian', 'copper', 'draconium', 'yellorite', 'silver', 'uranium'}
+        local oretable = {'diamond', 'coal', 'iron', 'gold', 'obsidian', 'copper', 'draconium', 'yellorite', 'silver', 'uranium', 'emerald', 'ore', 'resource'}
         for name in oretable do
             for inv = 1,16,1 do
                 local data = turtle.getItemDetail(inv)
