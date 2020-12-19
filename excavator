@@ -1,0 +1,124 @@
+print("Hello World!")
+
+local x = 0 - tonumber(arg[1])
+local y = 0 - tonumber(arg[2])
+local z = 0 - tonumber(arg[3])
+
+local x_arg = tonumber(arg[4]) + x
+local y_arg = tonumber(arg[5]) + y
+local z_arg = tonumber(arg[6]) + z
+
+local x_dir = tonumber(arg[7])
+local z_dir = tonumber(arg[8])
+local depth = tonumber(arg[9])
+
+local current_fuel = turtle.getFuelLevel()
+
+if current_fuel < 5000 then
+    turtle.refuel(64)
+end
+
+local step = 0
+
+if x_arg < 0 then
+    step = 1
+else
+    step = -1
+    turtle.turnLeft()
+    turtle.turnLeft()
+end
+
+for i = 0,x_arg,step do
+    turtle.dig()
+    turtle.forward()
+end
+
+if step == -1 then
+    turtle.turnRight()
+    turtle.turnRight()
+end
+
+if z_arg < 0 then
+    step = 1
+    turtle.turnRight()
+else
+    step = -1
+    turtle.turnLeft()
+end
+
+for i = 0,z_arg,step do
+    turtle.dig()
+    turtle.forward()
+end
+
+if step == 1 then
+    turtle.turnLeft()
+else
+    turtle.turnRight()
+end
+
+if y_arg < 0 then
+    step = 1
+else
+    step = -1
+end
+
+for i = 0,y_arg,step do
+    turtle.digDown()
+    turtle.down()
+end
+
+local switch = false
+
+for i = depth,0,-1 do
+
+    for j = z_dir,0,-1 do
+        for k = x_dir,0,-1 do
+            turtle.dig()
+            turtle.forward()
+        end
+        
+        if j == 0 then
+            if switch == false then
+                turtle.turnRight()
+                turtle.turnRight()
+            else
+                turtle.turnLeft()
+                turtle.turnLeft()
+            end
+        else
+            if switch == false then
+                turtle.turnRight()
+                turtle.dig()
+                turtle.turnRight()
+                switch = true
+            else
+                turtle.turnLeft()
+                turtle.dig()
+                turtle.turnLeft()
+                switch = false
+            end
+        end
+    end
+    
+    turtle.digDown()
+    turtle.down()
+    
+    for inv = 1,16,1 do
+        local data = turtle.getItemDetail(inv)
+        if data.name.find('coal') then
+            if turtle.getFuelLevel() + tonumber(data.count) * 80 > 20000 then
+                break
+            else
+                turtle.select(inv)
+                turtle.refuel(tonumber(data.count))
+            end
+        end
+    end
+end
+
+
+
+
+
+
