@@ -1,6 +1,7 @@
 print("Hello World!")
 
 function select (inv_index, ore_index)
+    local oretable = {'diamond', 'coal', 'iron', 'gold', 'obsidian', 'copper', 'draconium', 'yellorite', 'silver', 'uranium', 'emerald', 'ore', 'resource'}
     local data = turtle.getItemDetail(inv_index)
     if not data.name:find(oretable[ore_index]) then
         turtle.select(inv_index)
@@ -8,7 +9,7 @@ function select (inv_index, ore_index)
     end
     if data.name:find('coal') then
         if turtle.getFuelLevel() + tonumber(data.count) * 80 > 20000 then
-            break
+            return
         else
             turtle.select(inv_index)
             turtle.refuel(tonumber(data.count))
@@ -114,7 +115,7 @@ for i = depth,0,-1 do
             end
         end
         
-        local oretable = {'diamond', 'coal', 'iron', 'gold', 'obsidian', 'copper', 'draconium', 'yellorite', 'silver', 'uranium', 'emerald', 'ore', 'resource'}
+        
         for index = 1,13,1 do
             for inv = 1,16,1 do
                 if not pcall(select(inv, index)) then
