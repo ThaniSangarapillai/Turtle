@@ -39,7 +39,7 @@ local step = 0
 
 print(x_arg)
 if x_arg < 0 then
-    for i = 0,x_arg,1 do
+    for i = 1,x_arg,1 do
         print(i)
         turtle.dig()
         turtle.forward()
@@ -47,7 +47,7 @@ if x_arg < 0 then
 else
     turtle.turnLeft()
     turtle.turnLeft()
-    for i = x_arg,0,-1 do
+    for i = x_arg,1,-1 do
         print(i)
         turtle.dig()
         turtle.forward()
@@ -59,7 +59,7 @@ end
 print(z_arg)
 if z_arg < 0 then
     turtle.turnRight()
-    for i = 0,z_arg,1 do
+    for i = 1,z_arg,1 do
         print(i)
         turtle.dig()
         turtle.forward()
@@ -67,7 +67,7 @@ if z_arg < 0 then
     turtle.turnLeft()
 else
     turtle.turnLeft()
-    for i = z_arg,0,-1 do
+    for i = z_arg,1,-1 do
         print(i)
         turtle.dig()
         turtle.forward()
@@ -76,22 +76,22 @@ else
 end
 
 print(y_arg)
-for i = 0,y_arg,-1 do
+for i = 1,y_arg,-1 do
     turtle.digDown()
     turtle.down()
 end
 
 local switch = false
 
-for i = depth,0,-1 do
+for i = depth,1,-1 do
 
-    for j = z_dir,0,-1 do
-        for k = x_dir,0,-1 do
+    for j = z_dir,1,-1 do
+        for k = x_dir,1,-1 do
             turtle.dig()
             turtle.forward()
         end
         
-        if j == 0 then
+        if j == 1 then
             if switch == false then
                 turtle.turnRight()
                 turtle.turnRight()
@@ -118,7 +118,7 @@ for i = depth,0,-1 do
         
         for index = 1,13,1 do
             for inv = 1,16,1 do
-                if not pcall(select(inv, index)) then
+                if not pcall(select, inv, index) then
                     break
                 end
             end
