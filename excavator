@@ -86,15 +86,29 @@ for i = depth,0,-1 do
             if switch == false then
                 turtle.turnRight()
                 turtle.dig()
+                turtle.forward()
                 turtle.turnRight()
                 switch = true
             else
                 turtle.turnLeft()
                 turtle.dig()
+                turtle.forward()
                 turtle.turnLeft()
                 switch = false
             end
         end
+        
+        local oretable = {'diamond', 'coal', 'iron', 'gold', 'obsidian', 'copper', 'draconium', 'yellorite', 'silver', 'uranium'}
+        for name in oretable do
+            for inv = 1,16,1 do
+                local data = turtle.getItemDetail(inv)
+                if not data.name:find(name) then
+                    turtle.select(inv)
+                    turtle.drop()
+                end
+            end
+        end
+        
     end
     
     turtle.digDown()
@@ -102,7 +116,7 @@ for i = depth,0,-1 do
     
     for inv = 1,16,1 do
         local data = turtle.getItemDetail(inv)
-        if data.name.find('coal') then
+        if data.name:find('coal') then
             if turtle.getFuelLevel() + tonumber(data.count) * 80 > 20000 then
                 break
             else
